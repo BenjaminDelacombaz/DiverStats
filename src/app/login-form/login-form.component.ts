@@ -8,12 +8,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class LoginFormComponent implements OnInit {
 
+  private hideState: boolean = true
+
   constructor(private dialogRef: MatDialogRef<LoginFormComponent>) {}
 
   ngOnInit() {
   }
 
-  cancel(): void {
+  private cancel(): void {
     this.dialogRef.close()
+  }
+
+  private hide(): void {
+    this.hideState = !this.hideState
   }
 }
