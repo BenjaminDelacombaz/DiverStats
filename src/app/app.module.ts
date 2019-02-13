@@ -18,6 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { AngularFireModule } from '@angular/fire';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 // Component
 
@@ -26,6 +27,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
   declarations: [
     AppComponent,
     ToolbarComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,
