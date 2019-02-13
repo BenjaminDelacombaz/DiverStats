@@ -13,6 +13,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -40,6 +42,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     MatButtonModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
+    MatInputModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
