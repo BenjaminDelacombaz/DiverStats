@@ -14,6 +14,11 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { FIREBASE_CONFIG } from './app.firebase.config';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 // Component
 
 
@@ -31,6 +36,8 @@ import {MatButtonModule} from '@angular/material/button';
     LayoutModule,
     MatIconModule,
     MatButtonModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
