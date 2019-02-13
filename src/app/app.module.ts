@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -43,8 +44,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     AngularFireAuthModule,
     MatInputModule,
     MatListModule,
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginFormComponent]
 })
 export class AppModule { }
