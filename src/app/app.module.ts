@@ -24,6 +24,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 // Component
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatInputModule,
     MatListModule,
     MatDialogModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
