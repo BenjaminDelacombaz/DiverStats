@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -6,14 +6,11 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
   private hideState: boolean = true
 
   constructor(private dialogRef: MatDialogRef<LoginFormComponent>) {}
-
-  ngOnInit() {
-  }
 
   private cancel(): void {
     this.dialogRef.close()
