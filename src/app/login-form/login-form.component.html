@@ -8,7 +8,7 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+        <input matInput placeholder="Password" [type]="hideState ? 'password' : 'text'">
         <mat-icon matSuffix (mousedown)="hide()" (mouseup)="hide()">{{hideState ? 'visibility_off' : 'visibility'}}</mat-icon>
       </mat-form-field>
     </mat-grid-tile>
