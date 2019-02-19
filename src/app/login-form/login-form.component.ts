@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login-form',
@@ -14,7 +15,7 @@ export class LoginFormComponent {
   // Initialize the form group
   private loginForm: FormGroup
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<LoginFormComponent>) {
+  constructor(private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginFormComponent>) {
     this.loginForm = this.fb.group({
       // Initialize all form controls
       email: [''],
@@ -22,11 +23,16 @@ export class LoginFormComponent {
     })
   }
 
-  login() {
+  async login() {
     // Check input validation
     if (this.loginForm.valid) {
       // Validation success
-      console.log(`${this.loginForm.controls.email.value}; ${this.loginForm.controls.password.value}`)
+      try {
+        await this.userService.login(this.userService.fetchUser(this.loginForm.value))
+        console.log(UserService.CurrentUser)
+      } catch (e) {
+        console.error(e.message)
+      }
     } else {
       // Validation error
     }
