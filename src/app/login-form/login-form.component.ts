@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginFormComponent {
   // Initialize the form group
   private loginForm: FormGroup
 
-  constructor(private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginFormComponent>) {
+  constructor(private snackBar: MatSnackBar, private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginFormComponent>) {
   }
 
   ngOnInit(): void {
@@ -34,11 +35,12 @@ export class LoginFormComponent {
         await this.userService.login(this.userService.fetchUser(this.loginForm.value))
         this.dialogRef.close()
       } catch (e) {
-        console.error(e.message)
+        // Firebase error
+        this.snackBar.open(e.message,'Close',{ duration: 10000 })
       }
     } else {
       // Validation error
-      
+      this.snackBar.open('Please check that all fields are filled in.','Close',{ duration: 10000, panelClass: 'snack-error' })
     }
   }
 
