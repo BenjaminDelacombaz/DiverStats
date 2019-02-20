@@ -21,6 +21,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AngularFireModule } from '@angular/fire';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 // Component
 import { LoginFormComponent } from './components/login-form/login-form.component';
@@ -50,6 +51,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     MatSnackBarModule,
+    AngularFireModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
