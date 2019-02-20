@@ -23,8 +23,8 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // Component
-import { LoginFormComponent } from './login-form/login-form.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
