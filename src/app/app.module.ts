@@ -51,7 +51,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     MatSnackBarModule,
-    AngularFireModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
