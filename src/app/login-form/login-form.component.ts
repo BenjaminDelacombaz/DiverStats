@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -16,10 +16,13 @@ export class LoginFormComponent {
   private loginForm: FormGroup
 
   constructor(private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginFormComponent>) {
+  }
+
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
       // Initialize all form controls
-      email: [''],
-      password: ['']
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     })
   }
 
@@ -29,12 +32,13 @@ export class LoginFormComponent {
       // Validation success
       try {
         await this.userService.login(this.userService.fetchUser(this.loginForm.value))
-        console.log(UserService.CurrentUser)
+        this.dialogRef.close()
       } catch (e) {
         console.error(e.message)
       }
     } else {
       // Validation error
+      
     }
   }
 
