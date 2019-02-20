@@ -7,7 +7,7 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  private static currentUser: User = null
+  private currentUser: User = null
 
   constructor(private fireAuth: AngularFireAuth) { }
 
@@ -17,16 +17,21 @@ export class UserService {
     this.setCurrentUser(user)
   }
 
+  logout() {
+    this.currentUser = null
+    this.fireAuth.auth.signOut()
+  }
+
   fetchUser(formValues: any): User {
     return new User('', formValues.email, formValues.password)
   }
 
   private setCurrentUser(user: User): void {
     user.password = ''
-    UserService.currentUser = user
+    this.currentUser = user
   }
 
-  static get CurrentUser() {
+  get CurrentUser() {
     return this.currentUser
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginFormComponent } from '../login-form/login-form.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,19 +10,20 @@ import { LoginFormComponent } from '../login-form/login-form.component';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit() {
+    console.log(this.userService.CurrentUser)
   }
 
   openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginFormComponent, {
       width: '80%',
     });
+  }
 
-    /*dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });*/
+  logout(): void {
+    this.userService.logout()
   }
 
 }

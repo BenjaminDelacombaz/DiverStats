@@ -36,7 +36,7 @@ export class LoginFormComponent {
         this.dialogRef.close()
       } catch (e) {
         // Firebase error
-        this.snackBar.open(e.message,'Close',{ duration: 10000 })
+        this.snackBar.open(e.message,'Close',{ duration: 10000, panelClass: 'snack-error' })
       }
     } else {
       // Validation error
