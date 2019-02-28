@@ -13,7 +13,7 @@ export class ToolbarComponent implements OnInit {
   constructor(private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log(this.userService.CurrentUser)
+    
   }
 
   openLoginDialog(): void {

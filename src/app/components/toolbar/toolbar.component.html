@@ -7,11 +7,11 @@
 
   <button mat-button>Home</button>
   <button mat-button>Settings</button>
-  <div *ngIf="userService.CurrentUser == null">
+  <div *ngIf="!(userService.CurrentUser | async)">
     <button mat-button (click)="openLoginDialog()">Login</button>
   </div>
-  <div *ngIf="userService.CurrentUser != null">
-    <button mat-button (click)="logout()">Logout</button>
+  <div *ngIf="(userService.CurrentUser | async)">
+    <button mat-button (click)="logout()">{{ (userService.CurrentUser | async)?.email }}</button>
   </div>
   <button mat-icon-button>
     <mat-icon>help</mat-icon>

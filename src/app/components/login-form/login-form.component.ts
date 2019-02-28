@@ -32,7 +32,7 @@ export class LoginFormComponent {
     if (this.loginForm.valid) {
       // Validation success
       try {
-        await this.userService.login(this.userService.fetchUser(this.loginForm.value))
+        await this.userService.login(this.loginForm.getRawValue())
         this.dialogRef.close()
       } catch (e) {
         // Firebase error

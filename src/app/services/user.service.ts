@@ -1,34 +1,25 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from '../models/user';
+import { ProfileService } from './profile.service';
+import { UserInfo } from 'firebase';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private currentUser: User = null
+  private currentUser: Observable<UserInfo>
 
-  constructor(private fireAuth: AngularFireAuth) { }
+  constructor(private profileService: ProfileService, private fireAuth: AngularFireAuth) { }
 
-  async login(user: User) {
-    await this.fireAuth.auth.signInWithEmailAndPassword(user.email, user.password)
-    user.id = this.fireAuth.auth.currentUser.uid
-    this.setCurrentUser(user)
+  async login({ email, password }) {
+    await this.fireAuth.auth.signInWithEmailAndPassword(email, password)
+    this.currentUser = this.fireAuth.user
   }
 
   logout() {
-    this.currentUser = null
     this.fireAuth.auth.signOut()
-  }
-
-  fetchUser(formValues: any): User {
-    return new User('', formValues.email, formValues.password)
-  }
-
-  private setCurrentUser(user: User): void {
-    user.password = ''
-    this.currentUser = user
   }
 
   get CurrentUser() {
