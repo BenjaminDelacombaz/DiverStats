@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { ProfileService } from './profile.service';
 import { UserInfo } from 'firebase';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
