@@ -27,12 +27,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { DivesTableComponent } from './components/dives-table/dives-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     LoginFormComponent,
+    DivesTableComponent,
   ],
   imports: [
     BrowserModule,
