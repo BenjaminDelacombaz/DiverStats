@@ -7,7 +7,14 @@
 
   <button mat-button>Home</button>
   <button mat-button>Settings</button>
-  <button mat-button>Login</button>
+  <div *ngIf="!(userService.CurrentUser | async); then notLogged else logged"></div>
+  <ng-template #notLogged>
+      <button mat-button (click)="openLoginDialog()">Login</button>
+  </ng-template>
+  <ng-template #logged>
+      <button mat-button>{{ (userService.CurrentProfile | async)?.username }}</button>
+      <button mat-button (click)="logout()">Logout</button>
+  </ng-template>
   <button mat-icon-button>
     <mat-icon>help</mat-icon>
   </button>
