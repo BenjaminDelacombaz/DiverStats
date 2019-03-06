@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTableModule} from '@angular/material/table'; 
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -27,12 +28,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { DivesTableComponent } from './components/dives-table/dives-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     LoginFormComponent,
+    DivesTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     FormsModule,
     MatSnackBarModule,
     AngularFirestoreModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
