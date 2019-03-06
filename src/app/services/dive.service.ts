@@ -12,8 +12,10 @@ export class DiveService {
   dives: Observable<Dive[]>
   private colDive: string = '/dives'
 
-  constructor(private angularFireStore: AngularFirestore) {
-    this.divesCollection = angularFireStore.collection<Dive>(this.colDive)
+  constructor(private angularFireStore: AngularFirestore) { }
+
+  async getDives() {
+    this.divesCollection = await this.angularFireStore.collection<Dive>(this.colDive, sort => sort.orderBy('number'))
     this.dives = this.divesCollection.valueChanges()
-   }
+  }
 }

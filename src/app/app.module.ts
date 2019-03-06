@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTableModule} from '@angular/material/table'; 
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -54,6 +55,7 @@ import { DivesTableComponent } from './components/dives-table/dives-table.compon
     FormsModule,
     MatSnackBarModule,
     AngularFirestoreModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

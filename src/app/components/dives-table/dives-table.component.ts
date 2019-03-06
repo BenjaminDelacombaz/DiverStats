@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DiveService } from 'src/app/services/dive.service';
 
 @Component({
   selector: 'app-dives-table',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dives-table.component.scss']
 })
 export class DivesTableComponent implements OnInit {
+  
+  displayedColumns: string[] = ['number', 'dive-site', 'depth', 'duration', 'buddies', 'visibility', 'temperature', 'comments']
 
-  constructor() { }
+  constructor(private diveService: DiveService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.diveService.getDives()
   }
 
 }
