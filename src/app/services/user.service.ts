@@ -14,14 +14,14 @@ export class UserService {
   private docProfile: string = '/profiles'
   private currentProfile: Observable<Profile>
 
-  constructor(private fireStore: AngularFirestore, private fireAuth: AngularFireAuth) { }
+  constructor(private fireStore: AngularFirestore, private fireAuth: AngularFireAuth) {
+    this.isLogged()
+   }
 
   async login({ email, password }) {
     // Login
     await this.fireAuth.auth.signInWithEmailAndPassword(email, password)
-    this.currentUser = this.fireAuth.user
-    // Get the user profile
-    this.currentProfile = await this.fireStore.doc<Profile>(`${this.docProfile}/${this.fireAuth.auth.currentUser.uid}`).valueChanges()
+    this.setUser()
   }
 
   logout() {
@@ -35,4 +35,19 @@ export class UserService {
   get CurrentProfile() {
     return this.currentProfile
   }
+
+  private isLogged() {
+    this.fireAuth.user.subscribe(user => {
+      if (user != null) {
+        this.setUser()
+      }
+    })
+  }
+
+  private setUser() {
+    this.currentUser = this.fireAuth.user
+    // Get the user profile
+    this.currentProfile = this.fireStore.doc<Profile>(`${this.docProfile}/${this.fireAuth.auth.currentUser.uid}`).valueChanges()
+  }
+    
 }
