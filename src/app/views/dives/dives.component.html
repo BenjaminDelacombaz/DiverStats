@@ -1,3 +1,11 @@
-<p>
-  dives works!
-</p>
+<div class="container">
+  <mat-grid-list cols="2" rowHeight="80px">
+    <mat-grid-tile>
+      <h1 mat-dialog-title class="left-align">Your dives</h1>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-raised-button color="primary" class="right-align">New dive</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <app-dives-table></app-dives-table>
+</div>
