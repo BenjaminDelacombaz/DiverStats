@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 // Angular material components
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -58,6 +60,7 @@ import { DivesComponent } from './views/dives/dives.component';
     MatSnackBarModule,
     AngularFirestoreModule,
     MatTableModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
