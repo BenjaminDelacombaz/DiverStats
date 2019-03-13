@@ -26,7 +26,7 @@
 
   <ng-container matColumnDef="buddies">
     <th mat-header-cell *matHeaderCellDef> Buddies </th>
-    <td mat-cell *matCellDef="let dive"> {{ dive.buddies }} </td>
+    <td mat-cell *matCellDef="let dive"><div *ngFor="let buddy of dive.fullBuddies; let last = last">{{ (buddy | async)?.firstname }} {{ (buddy | async)?.lastname }}{{last ? '' : ', '}}</div></td>
   </ng-container>
 
   <ng-container matColumnDef="visibility">
