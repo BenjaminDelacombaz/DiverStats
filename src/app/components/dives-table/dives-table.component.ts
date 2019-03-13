@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DiveService } from 'src/app/services/dive.service';
-import { bypassSanitizationTrustUrl } from '@angular/core/src/sanitization/bypass';
+import { Observable } from 'rxjs';
+import { DiveSite } from 'src/app/models/dive-site';
 
 @Component({
   selector: 'app-dives-table',
@@ -9,6 +10,8 @@ import { bypassSanitizationTrustUrl } from '@angular/core/src/sanitization/bypas
 })
 export class DivesTableComponent {
   
+  test: Observable<DiveSite>
+
   displayedColumns: string[] = ['number', 'dive-site', 'date', 'depth', 'duration', 'buddies', 'visibility', 'temperature', 'comments']
   constructor(private diveService: DiveService) { }
 }

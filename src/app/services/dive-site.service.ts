@@ -11,12 +11,10 @@ export class DiveSiteService {
   diveSites: Observable<DiveSite[]>
   private colDive: string = '/dive_sites'
 
-  constructor(private angularFireStore: AngularFirestore) { 
-    console.log(this.getDiveSiteName('lDziMqt5y37mJxKbf9NT'))
-  }
+  constructor(private angularFireStore: AngularFirestore) {}
 
-  async getDiveSiteName(diveSiteId: string) {
-    return await this.angularFireStore
+  getDiveSite(diveSiteId: string) {
+    return this.angularFireStore
       .doc<DiveSite>(`${this.colDive}/${diveSiteId}`)
       .valueChanges()
   }
