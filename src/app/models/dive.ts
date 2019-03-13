@@ -1,12 +1,9 @@
-import { Buddy } from "./buddy";
-import { DiveSite } from "./dive-site";
-
 export interface Dive {
-  buddies: Array<Buddy>
+  buddies: Array<string>
   comments: string
   date: Date
   depth: number
-  dive_site: DiveSite
+  dive_site: string
   diver: string
   duration: number
   temperature: number
