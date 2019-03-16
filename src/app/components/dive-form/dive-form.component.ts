@@ -8,11 +8,11 @@ import { Dive } from 'src/app/models/dive';
 import { DiveService } from 'src/app/services/dive.service';
 
 @Component({
-  selector: 'app-create-dive-form',
-  templateUrl: './create-dive-form.component.html',
-  styleUrls: ['./create-dive-form.component.scss']
+  selector: 'app-dive-form',
+  templateUrl: './dive-form.component.html',
+  styleUrls: ['./dive-form.component.scss']
 })
-export class CreateDiveFormComponent implements OnInit {
+export class DiveFormComponent implements OnInit {
 
   // Initialize the form group
   private diveForm: FormGroup

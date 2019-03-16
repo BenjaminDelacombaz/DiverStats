@@ -35,7 +35,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DivesTableComponent } from './components/dives-table/dives-table.component';
 import { DivesComponent } from './views/dives/dives.component';
-import { CreateDiveFormComponent } from './components/create-dive-form/create-dive-form.component';
+import { DiveFormComponent } from './components/dive-form/dive-form.component';
 import { CreateDiveComponent } from './views/create-dive/create-dive.component';
 
 @NgModule({
@@ -45,7 +45,7 @@ import { CreateDiveComponent } from './views/create-dive/create-dive.component';
     LoginFormComponent,
     DivesTableComponent,
     DivesComponent,
-    CreateDiveFormComponent,
+    DiveFormComponent,
     CreateDiveComponent,
   ],
   imports: [

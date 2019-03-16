@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateDiveFormComponent } from './create-dive-form.component';
+import { DiveFormComponent } from './dive-form.component';
 
-describe('CreateDiveFormComponent', () => {
-  let component: CreateDiveFormComponent;
-  let fixture: ComponentFixture<CreateDiveFormComponent>;
+describe('DiveFormComponent', () => {
+  let component: DiveFormComponent;
+  let fixture: ComponentFixture<DiveFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateDiveFormComponent ]
+      declarations: [ DiveFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateDiveFormComponent);
+    fixture = TestBed.createComponent(DiveFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
