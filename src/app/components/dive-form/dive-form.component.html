@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Create a dive</h1>
+<form [formGroup]="diveForm" (ngSubmit)="create()">
+  <mat-grid-list cols="1" rowHeight="80px" class="container">
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <mat-select formControlName="dive_site" placeholder="Select a dive site">
+          <mat-option *ngFor="let diveSite of diveSiteService.diveSites | async" [value]="diveSite.id">
+            {{diveSite.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>           
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="depth" placeholder="Depth" type="number">
+        <span matSuffix>m.</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="duration" placeholder="Duration" type="number">
+        <span matSuffix>min.</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="temperature" placeholder="Temperature" type="number">
+        <span matSuffix>C°</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <mat-select formControlName="visibility" placeholder="Select a visibility">
+          <mat-option *ngFor="let visibility of visibilities" [value]="visibility.value">
+            {{visibility.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <textarea matInput formControlName="comments" placeholder="Textarea"></textarea>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="full-width">
+        <div *ngIf="buddies.length > 0; then withBuddies else noBuddies"></div>  
+      </mat-card>
+      <button mat-icon-button type="button">
+        <mat-icon color="primary" class="biggerIcon">add_circle</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="right-align">
+        <button routerLink="/dives" mat-raised-button color="warn">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Create</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list> 
+</form>
+
+<ng-template #withBuddies>
+  <mat-chip-list>
+    <mat-chip color="primary" selected *ngFor="let buddy of buddies">
+      {{buddy.firstname}} {{buddy.lastname}}
+      <button mat-icon-button (click)="removeBuddy(buddy)">
+        <mat-icon class="smallerIcon">close</mat-icon>
+      </button>
+    </mat-chip>
+  </mat-chip-list>  
+</ng-template>
+<ng-template #noBuddies>
+  No buddy
+</ng-template> 

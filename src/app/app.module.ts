@@ -17,6 +17,11 @@ import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -30,6 +35,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DivesTableComponent } from './components/dives-table/dives-table.component';
 import { DivesComponent } from './views/dives/dives.component';
+import { DiveFormComponent } from './components/dive-form/dive-form.component';
+import { CreateDiveComponent } from './views/create-dive/create-dive.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +45,8 @@ import { DivesComponent } from './views/dives/dives.component';
     LoginFormComponent,
     DivesTableComponent,
     DivesComponent,
+    DiveFormComponent,
+    CreateDiveComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,8 +67,13 @@ import { DivesComponent } from './views/dives/dives.component';
     MatSnackBarModule,
     AngularFirestoreModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatCardModule,
+    MatChipsModule,
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
   entryComponents: [LoginFormComponent]
 })

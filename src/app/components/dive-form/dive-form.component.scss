@@ -1,0 +1,26 @@
+.full-width {
+  width: 100%;
+}
+
+.container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.right-align {
+  margin-left: auto;
+
+  :first-child {
+    margin-bottom: 5px;
+    margin-right: 10px;
+  }
+}
+
+.biggerIcon {
+  font-size: 32px;
+}
+
+.smallerIcon {
+  font-size: 16px;
+}
