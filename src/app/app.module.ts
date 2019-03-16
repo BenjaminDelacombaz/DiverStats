@@ -36,6 +36,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DivesTableComponent } from './components/dives-table/dives-table.component';
 import { DivesComponent } from './views/dives/dives.component';
 import { CreateDiveFormComponent } from './components/create-dive-form/create-dive-form.component';
+import { CreateDiveComponent } from './views/create-dive/create-dive.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CreateDiveFormComponent } from './components/create-dive-form/create-di
     DivesTableComponent,
     DivesComponent,
     CreateDiveFormComponent,
+    CreateDiveComponent,
   ],
   imports: [
     BrowserModule,
