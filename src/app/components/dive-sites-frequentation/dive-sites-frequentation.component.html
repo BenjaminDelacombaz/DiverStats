@@ -1,3 +1,16 @@
-<p>
-  dive-sites-frequentation works!
-</p>
+<ngx-charts-bar-vertical *ngIf="data.length > 1"
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="data"
+  [gradient]="false"
+  xAxis="true"
+  yAxis="true"
+  legend="true"
+  showXAxisLabel="true"
+  showYAxisLabel="true"
+  xAxisLabel="Dive sites"
+  yAxisLabel="Number dives"
+  (select)="onSelect($event)">
+</ngx-charts-bar-vertical>
+
+<div *ngIf="data.length > 0"><div *ngFor="let tutu of data">{{ tutu.name }}</div></div>

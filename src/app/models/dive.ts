@@ -8,4 +8,5 @@ export interface Dive {
   duration: number
   temperature: number
   visibility: number
+  number: number
 }
