@@ -1,3 +1,37 @@
-<p>
-  create-dive-form works!
-</p>
+<h1 mat-dialog-title>Create a dive</h1>
+<form [formGroup]="diveForm" (ngSubmit)="create()">
+  <mat-grid-list cols="1" rowHeight="80px" class="container">
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <mat-select formControlName="diveSite" placeholder="Select a dive site">
+          <mat-option *ngFor="let diveSite of diveSiteService.diveSites | async" [value]="diveSite.id">
+            {{diveSite.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>           
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="depth" placeholder="Depth" type="number">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="duration" placeholder="Duration" type="number">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="right-align">
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list> 
+</form>

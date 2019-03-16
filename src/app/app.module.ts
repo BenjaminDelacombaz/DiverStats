@@ -17,6 +17,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select'; 
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -60,8 +63,11 @@ import { CreateDiveFormComponent } from './components/create-dive-form/create-di
     MatSnackBarModule,
     AngularFirestoreModule,
     MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
   entryComponents: [LoginFormComponent]
 })
