@@ -6,6 +6,7 @@ import { Buddy } from 'src/app/models/buddy';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dive } from 'src/app/models/dive';
 import { DiveService } from 'src/app/services/dive.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dive-form',
@@ -24,6 +25,7 @@ export class DiveFormComponent implements OnInit {
     private diveSiteService: DiveSiteService,
     private snackBar: MatSnackBar,
     private diveService: DiveService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -34,11 +36,11 @@ export class DiveFormComponent implements OnInit {
       // Initialize all form controls
       dive_site: ['', Validators.required],
       date: ['', Validators.required],
-      depth: ['65', Validators.required],
-      duration: ['75', Validators.required],
-      temperature: ['7', Validators.required],
-      visibility: ['3', Validators.required],
-      comments:  ['Très jolie', Validators.required],
+      depth: ['', Validators.required],
+      duration: ['', Validators.required],
+      temperature: ['', Validators.required],
+      visibility: ['', Validators.required],
+      comments:  ['', Validators.required],
     })
   }
 
@@ -53,7 +55,12 @@ export class DiveFormComponent implements OnInit {
         ...this.diveForm.getRawValue(),
         buddies: this.buddies.map(buddy => buddy.id)
       }
-      this.diveService.create(dive)
+      try {
+        this.diveService.create(dive)
+        this.router.navigate(['/dives'])
+      } catch(err) {
+        this.snackBar.open(err.message,'Close',{ duration: 10000, panelClass: 'snack-error' })
+      }
     } else {
       // Validation error
       this.snackBar.open('Please check that all fields are filled in.','Close',{ duration: 10000, panelClass: 'snack-error' })
