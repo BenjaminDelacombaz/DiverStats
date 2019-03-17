@@ -40,6 +40,7 @@ import { CreateDiveComponent } from './views/create-dive/create-dive.component';
 import { BuddiesComponent } from './views/buddies/buddies.component';
 import { BuddiesTableComponent } from './components/buddies-table/buddies-table.component';
 import { CreateBuddyComponent } from './views/create-buddy/create-buddy.component';
+import { BuddyFormComponent } from './components/buddy-form/buddy-form.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { CreateBuddyComponent } from './views/create-buddy/create-buddy.componen
     BuddiesComponent,
     BuddiesTableComponent,
     CreateBuddyComponent,
+    BuddyFormComponent,
   ],
   imports: [
     BrowserModule,
