@@ -1,3 +1,11 @@
-<p>
-  buddies works!
-</p>
+<div class="container">
+  <mat-grid-list cols="2" rowHeight="80px">
+    <mat-grid-tile>
+      <h1 mat-dialog-title class="left-align">Buddies</h1>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button routerLink="/buddies/create" mat-raised-button color="primary" class="right-align">New buddy</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <app-buddies-table class="full-width"></app-buddies-table>
+</div>
