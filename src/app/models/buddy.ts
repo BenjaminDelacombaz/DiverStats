@@ -6,4 +6,5 @@ export interface Buddy {
   lastname: string
   phone: number
   public: boolean
+  created_by: string
 }
