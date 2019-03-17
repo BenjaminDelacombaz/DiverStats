@@ -29,7 +29,7 @@ export class BuddiesTableComponent implements OnInit {
         // Delete ressource
         this.buddyService.delete(buddy)
       }    
-    });
+    })
   }
 
 }
