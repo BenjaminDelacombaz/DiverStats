@@ -3,6 +3,7 @@ import { Buddy } from '../models/buddy';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators'
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,13 @@ export class BuddyService {
   buddies: Observable<Buddy[]>
   private col: string = '/buddies'
 
-  constructor(private angularFireStore: AngularFirestore) {
-    this.buddies = this.getBuddies()
+  constructor(
+    private angularFireStore: AngularFirestore,
+    private angularFireAuth: AngularFireAuth,
+    ) {
+    this.angularFireAuth.user.subscribe(user => {
+      this.buddies = this.getBuddies(user.uid)
+    })
    }
 
   getBuddy(buddyId: string) {
@@ -22,9 +28,9 @@ export class BuddyService {
       .valueChanges()
   }
 
-  private getBuddies(onlyPublic: boolean = true) {
+  private getBuddies(userId: string) {
     return this.angularFireStore
-      .collection<Buddy>(this.col, sort => sort.where('public', '==', onlyPublic))
+      .collection<Buddy>(this.col, sort => sort.where('created_by', '==', userId))
       .snapshotChanges()
       .pipe(map(diveSites => diveSites.map(this.documentToDomainObject)))
   }
