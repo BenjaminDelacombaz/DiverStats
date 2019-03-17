@@ -42,6 +42,7 @@ import { BuddiesComponent } from './views/buddies/buddies.component';
 import { BuddiesTableComponent } from './components/buddies-table/buddies-table.component';
 import { CreateBuddyComponent } from './views/create-buddy/create-buddy.component';
 import { BuddyFormComponent } from './components/buddy-form/buddy-form.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { BuddyFormComponent } from './components/buddy-form/buddy-form.component
     BuddiesTableComponent,
     CreateBuddyComponent,
     BuddyFormComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +87,6 @@ import { BuddyFormComponent } from './components/buddy-form/buddy-form.component
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
-  entryComponents: [LoginFormComponent]
+  entryComponents: [LoginFormComponent, ConfirmComponent]
 })
 export class AppModule { }
