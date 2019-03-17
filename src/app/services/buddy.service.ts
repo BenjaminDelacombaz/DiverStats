@@ -42,4 +42,8 @@ export class BuddyService {
     })
   }
 
+  delete(buddy: Buddy) {
+    console.log(buddy)
+  }
+
 }
