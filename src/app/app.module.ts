@@ -43,6 +43,7 @@ import { BuddiesTableComponent } from './components/buddies-table/buddies-table.
 import { CreateBuddyComponent } from './views/create-buddy/create-buddy.component';
 import { BuddyFormComponent } from './components/buddy-form/buddy-form.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { EditBuddyComponent } from './views/edit-buddy/edit-buddy.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     CreateBuddyComponent,
     BuddyFormComponent,
     ConfirmComponent,
+    EditBuddyComponent,
   ],
   imports: [
     BrowserModule,
