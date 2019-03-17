@@ -22,7 +22,7 @@ export class BuddiesTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  openConfirmDeleteDialog(buddy: Buddy): void {
+  private openConfirmDeleteDialog(buddy: Buddy): void {
     const dialogRef = this.dialog.open(ConfirmComponent,
       {
         width: '50%',
@@ -40,6 +40,10 @@ export class BuddiesTableComponent implements OnInit {
         }
       }
     })
+  }
+
+  private openEditPage(buddy: Buddy) {
+    
   }
 
 }
