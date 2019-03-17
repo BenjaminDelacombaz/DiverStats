@@ -16,11 +16,11 @@ export class BuddyService {
   constructor(
     private angularFireStore: AngularFirestore,
     private angularFireAuth: AngularFireAuth,
-    ) {
+  ) {
     this.angularFireAuth.user.subscribe(user => {
       this.buddies = this.getBuddies(user.uid)
     })
-   }
+  }
 
   getBuddy(buddyId: string) {
     return this.angularFireStore
@@ -39,6 +39,14 @@ export class BuddyService {
     const object = _.payload.doc.data();
     object.id = _.payload.doc.id;
     return object;
+  }
+
+  create(buddy: Buddy) {
+    this.angularFireAuth.user.subscribe(user => {
+      buddy.created_by = user.uid
+      this.angularFireStore
+        .doc<Buddy>(`${this.col}/${this.angularFireStore.createId()}`).set(buddy)
+    })
   }
 
 }
