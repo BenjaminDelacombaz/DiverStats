@@ -31,14 +31,7 @@ export class BuddyService {
   private getBuddies(userId: string) {
     return this.angularFireStore
       .collection<Buddy>(this.col, sort => sort.where('created_by', '==', userId))
-      .snapshotChanges()
-      .pipe(map(diveSites => diveSites.map(this.documentToDomainObject)))
-  }
-
-  private documentToDomainObject = _ => {
-    const object = _.payload.doc.data();
-    object.id = _.payload.doc.id;
-    return object;
+      .valueChanges()
   }
 
   create(buddy: Buddy) {
