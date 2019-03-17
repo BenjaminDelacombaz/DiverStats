@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { Buddy } from 'src/app/models/buddy';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buddies-table',
@@ -17,7 +18,8 @@ export class BuddiesTableComponent implements OnInit {
   constructor(
     private buddyService: BuddyService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -43,7 +45,7 @@ export class BuddiesTableComponent implements OnInit {
   }
 
   private openEditPage(buddy: Buddy) {
-    
+    this.router.navigateByUrl(`/buddies/edit/${buddy.id}`)
   }
 
 }
