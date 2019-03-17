@@ -22,6 +22,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -80,6 +81,7 @@ import { BuddyFormComponent } from './components/buddy-form/buddy-form.component
     MatSelectModule,
     MatCardModule,
     MatChipsModule,
+    MatSlideToggleModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

@@ -1,3 +1,42 @@
-<p>
-  buddy-form works!
-</p>
+<h1 mat-dialog-title>Create a buddy</h1>
+<form [formGroup]="buddyForm" (ngSubmit)="create()">
+  <mat-grid-list cols="1" rowHeight="80px" class="container">
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="firstname" placeholder="Firstname">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="lastname" placeholder="Lastname">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="email" placeholder="Email">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="phone" placeholder="Phone" type="number">
+        <span matPrefix>+</span>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="birthdate" [matDatepicker]="picker" placeholder="Birthdate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>           
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-slide-toggle formControlName="public" color="warn" class="left-align">Public ?</mat-slide-toggle>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="right-align">
+        <button routerLink="/buddies" mat-raised-button color="warn">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Create</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list> 
+</form>
