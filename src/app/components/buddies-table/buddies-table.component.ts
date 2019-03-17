@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BuddyService } from 'src/app/services/buddy.service';
 
 @Component({
   selector: 'app-buddies-table',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuddiesTableComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'phone', 'birthdate']
+
+  constructor(private buddyService: BuddyService) { }
 
   ngOnInit() {
   }
