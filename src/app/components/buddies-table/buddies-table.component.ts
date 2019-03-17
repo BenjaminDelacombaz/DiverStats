@@ -3,6 +3,7 @@ import { BuddyService } from 'src/app/services/buddy.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { Buddy } from 'src/app/models/buddy';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-buddies-table',
@@ -15,20 +16,29 @@ export class BuddiesTableComponent implements OnInit {
 
   constructor(
     private buddyService: BuddyService,
-    private dialog: MatDialog
-    ) { }
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
   openConfirmDeleteDialog(buddy: Buddy): void {
-    const dialogRef = this.dialog.open(ConfirmComponent,{width: '50%'});
+    const dialogRef = this.dialog.open(ConfirmComponent,
+      {
+        width: '50%',
+        data: `Do you really want to delete this buddy: ${buddy.firstname} ${buddy.lastname}?`
+      });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Delete ressource
-        this.buddyService.delete(buddy)
-      }    
+        try {
+          // Delete ressource
+          this.buddyService.delete(buddy)
+        } catch (err) {
+          // Deletion error
+          this.snackBar.open('An error occurred during deletion.', 'Close', { duration: 10000, panelClass: 'snack-error' })
+        }
+      }
     })
   }
 
