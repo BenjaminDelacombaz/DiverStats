@@ -29,6 +29,11 @@
     <td mat-cell *matCellDef="let buddy"> {{ buddy.public }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let buddy"><button mat-icon-button (click)="openConfirmDeleteDialog()"><mat-icon color="primary">delete</mat-icon></button></td>
+  </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
