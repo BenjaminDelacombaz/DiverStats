@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BuddyService } from 'src/app/services/buddy.service';
+import { Buddy } from 'src/app/models/buddy';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit-buddy',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditBuddyComponent implements OnInit {
 
-  constructor() { }
+  private buddy: Observable<Buddy>
+
+  constructor(
+    private route: ActivatedRoute,
+    private buddyService: BuddyService
+  ) { }
 
   ngOnInit() {
+    const id: string = this.route.snapshot.paramMap.get('id');
+    this.buddy = this.buddyService.getBuddy(id)
   }
 
 }
