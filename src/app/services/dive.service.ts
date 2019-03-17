@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Dive } from '../models/dive'
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators'
 import { AngularFireAuth } from '@angular/fire/auth';
 import { DiveSiteService } from './dive-site.service';
@@ -62,8 +62,8 @@ export class DiveService {
         })
         tempDiveSites.forEach((diveSite, i) => {
           //this.diveSiteService.getDiveSite(diveSite).subscribe(diveSite => {
-            let value = { 'name': diveSite, 'value': tempCountDiveSites[i] }
-            returnValue.push(value)
+          let value = { 'name': diveSite, 'value': tempCountDiveSites[i] }
+          returnValue.push(value)
           //})
         })
         return returnValue
@@ -71,13 +71,28 @@ export class DiveService {
   }
 
   getDiveSitesFrequentation(userId: string): void {
-    this.getDives(userId)
-    .pipe(map(dives => mergeMap(
-      (dive: Dive) => this.diveSiteService.getDiveSite(dive.dive_site)
-      .pipe(map(diveSite => { return dive.number + ' ' + diveSite.name }))
-    ))).subscribe(v => console.log(v))
-    
-    
+    try {
+      this.getDives(userId)
+        .pipe(
+          mergeMap(dives => {
+            const diveSiteStringObservables = dives.map(
+              (dive: Dive) => {
+                this.diveSiteService.getDiveSite(dive.dive_site)
+                  .pipe(
+                    map(diveSite => {
+                      return dive.number + ' ' + diveSite.name;
+                    })
+                  );
+              }
+            );
+            return combineLatest(diveSiteStringObservables)
+          })
+        ).subscribe(v => console.log(v));
+    } catch(err) {
+      console.log(err)
+    }
+
+
     /*return this.angularFireStore
       .doc<Dive>(`${this.colDive}/EmMrmiyfB2lw2y2F6bBH`)
       .valueChanges()
