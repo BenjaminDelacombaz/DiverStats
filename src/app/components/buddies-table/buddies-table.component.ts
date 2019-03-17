@@ -8,7 +8,7 @@ import { BuddyService } from 'src/app/services/buddy.service';
 })
 export class BuddiesTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'phone', 'birthdate']
+  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'phone', 'birthdate', 'public']
 
   constructor(private buddyService: BuddyService) { }
 
