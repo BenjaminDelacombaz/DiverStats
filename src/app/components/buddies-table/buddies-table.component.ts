@@ -44,8 +44,4 @@ export class BuddiesTableComponent implements OnInit {
     })
   }
 
-  private openEditPage(buddy: Buddy) {
-    this.router.navigateByUrl(`/buddies/edit/${buddy.id}`)
-  }
-
 }
