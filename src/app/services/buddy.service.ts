@@ -43,6 +43,14 @@ export class BuddyService {
     })
   }
 
+  update(buddy: Buddy, buddyId: string) {
+    this.angularFireAuth.user.pipe(first()).subscribe(user => {
+      buddy.created_by = user.uid
+      this.angularFireStore
+        .doc<Buddy>(`${this.col}/${buddyId}`).update(buddy)
+    })
+  }
+
   delete(buddy: Buddy) {
     return this.angularFireStore.doc<Buddy>(`${this.col}/${buddy.id}`).delete()
   }

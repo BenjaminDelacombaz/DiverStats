@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class EditBuddyComponent implements OnInit {
 
   private buddy: Observable<Buddy>
+  private buddyId: string
 
   constructor(
     private route: ActivatedRoute,
@@ -19,8 +20,8 @@ export class EditBuddyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id: string = this.route.snapshot.paramMap.get('id');
-    this.buddy = this.buddyService.getBuddy(id)
+    this.buddyId = this.route.snapshot.paramMap.get('id');
+    this.buddy = this.buddyService.getBuddy(this.buddyId)
   }
 
 }

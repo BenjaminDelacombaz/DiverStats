@@ -1,6 +1,6 @@
 export interface Buddy {
   id: string
-  birthdate: Date
+  birthdate: any
   email: string
   firstname: string
   lastname: string
