@@ -1,0 +1,46 @@
+<table mat-table [dataSource]="buddies" [trackBy]="(buddies | async)?.id" class="mat-elevation-z8">
+  <ng-container matColumnDef="firstname">
+    <th mat-header-cell *matHeaderCellDef> Firstname </th>
+    <td mat-cell *matCellDef="let buddy"> {{ buddy.firstname }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+    <th mat-header-cell *matHeaderCellDef> Lastname </th>
+    <td mat-cell *matCellDef="let buddy"> {{ buddy.lastname }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let buddy"> {{ buddy.email }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef> Phone </th>
+    <td mat-cell *matCellDef="let buddy"> +{{ buddy.phone }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="birthdate">
+    <th mat-header-cell *matHeaderCellDef> Birthdate </th>
+    <td mat-cell *matCellDef="let buddy"> {{ buddy.birthdate.seconds * 1000 | date:'dd MMM. yyyy' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="public">
+    <th mat-header-cell *matHeaderCellDef> Public </th>
+    <td mat-cell *matCellDef="let buddy"> {{ buddy.public }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let buddy">
+      <button mat-icon-button routerLink="/buddies/edit/{{buddy.id}}">
+        <mat-icon color="primary">edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="openConfirmDeleteDialog(buddy)">
+        <mat-icon color="primary">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

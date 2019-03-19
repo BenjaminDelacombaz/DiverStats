@@ -1,0 +1,9 @@
+<mat-grid-list cols="1" rowHeight="80px" class="container">
+  <mat-grid-tile>
+    <p mat-dialog-title>{{ data }}</p>
+  </mat-grid-tile>
+  <mat-grid-tile>
+      <button mat-raised-button color="warn" class="spaceRigth" type="button" [mat-dialog-close]="false">No</button>
+      <button mat-raised-button color="primary" type="button" [mat-dialog-close]="true">Yes</button>
+  </mat-grid-tile>
+</mat-grid-list>

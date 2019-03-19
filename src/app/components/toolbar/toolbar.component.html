@@ -12,6 +12,7 @@
   </ng-template>
   <ng-template #logged>
     <button mat-button routerLink="/dives">My dives</button>
+    <button mat-button routerLink="/buddies">Buddies</button>
     <button mat-button>{{ (userService.CurrentProfile | async)?.username }}</button>
     <button mat-button (click)="logout()">Logout</button>
   </ng-template>

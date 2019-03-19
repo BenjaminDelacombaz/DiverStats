@@ -22,6 +22,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -37,6 +38,12 @@ import { DivesTableComponent } from './components/dives-table/dives-table.compon
 import { DivesComponent } from './views/dives/dives.component';
 import { DiveFormComponent } from './components/dive-form/dive-form.component';
 import { CreateDiveComponent } from './views/create-dive/create-dive.component';
+import { BuddiesComponent } from './views/buddies/buddies.component';
+import { BuddiesTableComponent } from './components/buddies-table/buddies-table.component';
+import { CreateBuddyComponent } from './views/create-buddy/create-buddy.component';
+import { BuddyFormComponent } from './components/buddy-form/buddy-form.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { EditBuddyComponent } from './views/edit-buddy/edit-buddy.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +54,12 @@ import { CreateDiveComponent } from './views/create-dive/create-dive.component';
     DivesComponent,
     DiveFormComponent,
     CreateDiveComponent,
+    BuddiesComponent,
+    BuddiesTableComponent,
+    CreateBuddyComponent,
+    BuddyFormComponent,
+    ConfirmComponent,
+    EditBuddyComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,9 +85,10 @@ import { CreateDiveComponent } from './views/create-dive/create-dive.component';
     MatSelectModule,
     MatCardModule,
     MatChipsModule,
+    MatSlideToggleModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
-  entryComponents: [LoginFormComponent]
+  entryComponents: [LoginFormComponent, ConfirmComponent]
 })
 export class AppModule { }
