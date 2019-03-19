@@ -1,4 +1,4 @@
-<ngx-charts-bar-vertical *ngIf="data.length > 1"
+<ngx-charts-bar-vertical *ngIf="(diveService.diveSitesFrequentation | async) as data"
   [view]="view"
   [scheme]="colorScheme"
   [results]="data"
@@ -12,5 +12,3 @@
   yAxisLabel="Number dives"
   (select)="onSelect($event)">
 </ngx-charts-bar-vertical>
-
-<div *ngIf="data.length > 0"><div *ngFor="let tutu of data">{{ tutu.name }}</div></div>

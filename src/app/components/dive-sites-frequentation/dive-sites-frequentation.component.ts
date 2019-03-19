@@ -11,7 +11,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class DiveSitesFrequentationComponent implements OnInit {
 
-  private data: Array<Object> = []
   // charts options
   view: any[] = [700, 400];
   showLegend = true;

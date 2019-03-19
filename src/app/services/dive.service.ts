@@ -14,6 +14,7 @@ export class DiveService {
 
   private divesCollection: AngularFirestoreCollection<Dive>
   dives: Observable<Dive[]>
+  diveSitesFrequentation: Observable<Object[]>
   private colDive: string = '/dives'
 
   constructor(
@@ -24,7 +25,7 @@ export class DiveService {
   ) {
     this.angularFireAuth.user.subscribe(user => {
       this.dives = this.getDives(user.uid)
-      this.getDiveSitesFrequentation(user.uid)
+      this.diveSitesFrequentation = this.getDiveSitesFrequentation(user.uid)
     })
   }
 
@@ -70,37 +71,45 @@ export class DiveService {
       }))
   }
 
-  getDiveSitesFrequentation(userId: string): void {
-    try {
-      this.getDives(userId)
-        .pipe(
-          mergeMap(dives => {
-            const diveSiteStringObservables = dives.map(
-              (dive: Dive) => {
-                this.diveSiteService.getDiveSite(dive.dive_site)
-                  .pipe(
-                    map(diveSite => {
-                      return dive.number + ' ' + diveSite.name;
-                    })
-                  );
-              }
-            );
-            return combineLatest(diveSiteStringObservables)
-          })
-        ).subscribe(v => console.log(v));
-    } catch(err) {
-      console.log(err)
-    }
-
-
-    /*return this.angularFireStore
-      .doc<Dive>(`${this.colDive}/EmMrmiyfB2lw2y2F6bBH`)
-      .valueChanges()
-      .pipe(mergeMap(dive => this.diveSiteService.getDiveSite(dive.dive_site)
-      .pipe(map(
-        diveSite => { return dive.number + ' ' + diveSite.name }
-      ))))
-      .subscribe(v => console.log(v))*/
+  private getDiveSitesFromDives(userId: string) {
+    return this.getDives(userId)
+      .pipe(mergeMap(dives => {
+        const diveSiteStringObservables = dives.map(
+          (dive: Dive) => {
+            return this.diveSiteService.getDiveSite(dive.dive_site)
+              .pipe(map(diveSite => {
+                return diveSite.name
+              }))
+          }
+        )
+        return combineLatest(diveSiteStringObservables)
+      }))
   }
+
+  getDiveSitesFrequentation(userId) {
+    let diveSitesFrequentation: Object[] = []
+    return this.getDiveSitesFromDives(userId).pipe(map(diveSitesName => {
+      diveSitesName.sort()
+      let current = null
+      let cnt = 0
+
+      diveSitesName.forEach((diveSiteName,i) => {
+        if (diveSiteName != current) {
+          if (cnt > 0) {
+            diveSitesFrequentation.push({ name: current, value: cnt })
+          }
+          current = diveSiteName;
+          cnt = 1;
+        } else {
+          cnt++;
+        }
+      })
+      if (cnt > 0) {
+        diveSitesFrequentation.push({ name: current, value: cnt })
+      }
+      return diveSitesFrequentation
+    }))
+  }
+
 
 }
