@@ -19,6 +19,9 @@ export class BuddyService {
   ) {
     this.angularFireAuth.user.subscribe(user => {
       this.buddies = this.getBuddies(user.uid)
+
+      // No more duplicate problem
+      this.getBuddies(user.uid).subscribe()
     })
   }
 
