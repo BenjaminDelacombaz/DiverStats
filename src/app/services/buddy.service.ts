@@ -9,8 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   providedIn: 'root'
 })
 export class BuddyService {
-
-  buddies: Observable<Buddy[]>
+  
   private col: string = '/buddies'
 
   constructor(
