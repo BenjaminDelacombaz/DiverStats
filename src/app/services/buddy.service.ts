@@ -16,11 +16,7 @@ export class BuddyService {
   constructor(
     private angularFireStore: AngularFirestore,
     private angularFireAuth: AngularFireAuth,
-  ) {
-    this.angularFireAuth.user.subscribe(user => {
-      this.buddies = this.getBuddies(user.uid)
-    })
-  }
+  ) { }
 
   getBuddy(buddyId: string) {
     return this.angularFireStore
@@ -28,7 +24,7 @@ export class BuddyService {
       .valueChanges()
   }
 
-  private getBuddies(userId: string) {
+  getBuddies(userId: string) {
     return this.angularFireStore
       .collection<Buddy>(this.col, sort => sort.where('created_by', '==', userId))
       .snapshotChanges()

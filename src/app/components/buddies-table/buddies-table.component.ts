@@ -5,6 +5,8 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { Buddy } from 'src/app/models/buddy';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-buddies-table',
@@ -15,13 +17,20 @@ export class BuddiesTableComponent implements OnInit {
 
   displayedColumns: string[] = ['firstname', 'lastname', 'email', 'phone', 'birthdate', 'public', 'action']
 
+  private buddies: Observable<Buddy[]>
+
   constructor(
     private buddyService: BuddyService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private router: Router) { }
+    private router: Router,
+    private afAuth: AngularFireAuth) {
+    }
 
   ngOnInit() {
+    this.afAuth.user.subscribe(user => {
+      this.buddies = this.buddyService.getBuddies(user.uid)
+    })
   }
 
   private openConfirmDeleteDialog(buddy: Buddy): void {

@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="buddyService.buddies" class="mat-elevation-z8">
+<table mat-table [dataSource]="buddies" class="mat-elevation-z8">
   <ng-container matColumnDef="firstname">
     <th mat-header-cell *matHeaderCellDef> Firstname </th>
     <td mat-cell *matCellDef="let buddy"> {{ buddy.firstname }} </td>
