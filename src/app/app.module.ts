@@ -33,6 +33,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DivesTableComponent } from './components/dives-table/dives-table.component';
 import { DivesComponent } from './views/dives/dives.component';
 import { DiveSitesFrequentationComponent } from './components/dive-sites-frequentation/dive-sites-frequentation.component';
+import { DiveSiteDepthChartComponent } from './components/dive-site-depth-chart/dive-site-depth-chart.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { DiveSitesFrequentationComponent } from './components/dive-sites-frequen
     DivesTableComponent,
     DivesComponent,
     DiveSitesFrequentationComponent,
+    DiveSiteDepthChartComponent,
   ],
   imports: [
     BrowserModule,
