@@ -7,6 +7,7 @@ import { CreateBuddyComponent } from './views/create-buddy/create-buddy.componen
 import { EditBuddyComponent } from './views/edit-buddy/edit-buddy.component';
 import { DiveSitesComponent } from './views/dive-sites/dive-sites.component';
 import { CreateDiveSiteComponent } from './views/create-dive-site/create-dive-site.component';
+import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.component';
 
 const routes: Routes = [
   { path: 'dives', component: DivesComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'buddies/edit/:id', component: EditBuddyComponent},
   { path: 'dive-sites', component: DiveSitesComponent },
   { path: 'dive-sites/create', component: CreateDiveSiteComponent },
+  { path: 'dive-sites/edit/:id', component: EditDiveSiteComponent },
 ];
 
 @NgModule({
