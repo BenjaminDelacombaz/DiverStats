@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DiveSite } from 'src/app/models/dive-site';
 import { GLOBAL } from 'src/app/app.const';
+import * as firebase from 'firebase/app'
 
 @Component({
   selector: 'app-dive-site-form',
@@ -49,9 +50,10 @@ export class DiveSiteFormComponent implements OnInit {
         this.diveSiteForm.setValue(
           {
             name: diveSite.name,
-            water_type: diveSite.water_type,
-            difficulty: diveSite.difficulty,
-            location: diveSite.location,
+            water_type: diveSite.water_type.toString(),
+            difficulty: diveSite.difficulty.toString(),
+            longitude: diveSite.location._long,
+            latitude: diveSite.location._lat,
             description: diveSite.description
           })
       })
@@ -63,8 +65,13 @@ export class DiveSiteFormComponent implements OnInit {
       // Form is valid
       let diveSite: DiveSite = {
         ...this.diveSiteForm.getRawValue(),
-        location: [this.diveSiteForm.getRawValue().longitude, this.diveSiteForm.getRawValue().latitude]
+        location: new firebase.firestore.GeoPoint(Number(this.diveSiteForm.getRawValue().latitude), Number(this.diveSiteForm.getRawValue().longitude)),
+        water_type: Number(this.diveSiteForm.getRawValue().water_type),
+        difficulty: Number(this.diveSiteForm.getRawValue().difficulty)
       }
+      // Delete unused property
+      delete diveSite['longitude']
+      delete diveSite['latitude']
       try {
         if (this.diveSiteId == null) {
           this.diveSiteService.create(diveSite)
