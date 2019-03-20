@@ -11,8 +11,9 @@
     <button mat-button (click)="openLoginDialog()">Login</button>
   </ng-template>
   <ng-template #logged>
-    <button mat-button routerLink="/dives">My dives</button>
+    <button mat-button routerLink="/dives">Dives</button>
     <button mat-button routerLink="/buddies">Buddies</button>
+    <button mat-button routerLink="/dive-sites">Dive sites</button>
     <button mat-button>{{ (userService.CurrentProfile | async)?.username }}</button>
     <button mat-button (click)="logout()">Logout</button>
   </ng-template>
