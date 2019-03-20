@@ -40,7 +40,8 @@ export class DiveSiteFormComponent implements OnInit {
       name: ['', Validators.required],
       water_type: ['', Validators.required],
       difficulty: ['', Validators.required],
-      location: ['', Validators.required],
+      longitude: ['', Validators.required],
+      latitude: ['', Validators.required],
       description: ['', Validators.required]
     })
     if (this.diveSiteId != null) {
