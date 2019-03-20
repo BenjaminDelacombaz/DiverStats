@@ -50,6 +50,8 @@ import { DiveSitesFrequentationComponent } from './components/dive-sites-frequen
 import { DiveSiteDepthChartComponent } from './components/dive-site-depth-chart/dive-site-depth-chart.component';
 import { DiveSitesComponent } from './views/dive-sites/dive-sites.component';
 import { DiveSitesTableComponent } from './components/dive-sites-table/dive-sites-table.component';
+import { DiveSiteFormComponent } from './components/dive-site-form/dive-site-form.component';
+import { CreateDiveSiteComponent } from './views/create-dive-site/create-dive-site.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { DiveSitesTableComponent } from './components/dive-sites-table/dive-site
     DiveSiteDepthChartComponent,
     DiveSitesComponent,
     DiveSitesTableComponent,
+    DiveSiteFormComponent,
+    CreateDiveSiteComponent,
   ],
   imports: [
     BrowserModule,
