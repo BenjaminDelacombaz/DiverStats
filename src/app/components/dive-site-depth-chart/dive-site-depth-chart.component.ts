@@ -3,6 +3,7 @@ import { DiveService } from 'src/app/services/dive.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { DiveSiteService } from 'src/app/services/dive-site.service';
+import { DiveSite } from 'src/app/models/dive-site';
 
 @Component({
   selector: 'app-dive-site-depth-chart',
@@ -12,7 +13,8 @@ import { DiveSiteService } from 'src/app/services/dive-site.service';
 export class DiveSiteDepthChartComponent implements OnInit {
 
   dataObs: Observable<Object[]>
-
+  diveSites: Observable<DiveSite[]>
+  selectedDiveSite: string
   // charts options
   view: any[] = [700, 400];
   showLegend = true;
@@ -23,12 +25,19 @@ export class DiveSiteDepthChartComponent implements OnInit {
   constructor(
     private diveService: DiveService,
     private afAuth: AngularFireAuth,
-    private diveSite: DiveSiteService) { }
+    private diveSiteService: DiveSiteService) { }
 
   ngOnInit() {
-    this.afAuth.user.subscribe(user => {
-      this.dataObs = this.diveService.getDiveSiteDepth(user.uid, 'lDziMqt5y37mJxKbf9NT')
+    this.diveSites = this.diveSiteService.getDiveSites()
+    this.diveSites.subscribe(diveSites => {
+      this.selectedDiveSite = diveSites[0].id
+      this.changeDiveSite()
     })
   }
 
+  private changeDiveSite() {
+    this.afAuth.user.subscribe(user => {
+      this.dataObs = this.diveService.getDiveSiteDepth(user.uid, this.selectedDiveSite)
+    })
+  }
 }
