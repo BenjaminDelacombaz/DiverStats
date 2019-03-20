@@ -1,8 +1,8 @@
-<mat-select placeholder="Select a dive site">
+<!--<mat-select placeholder="Select a dive site">
   <mat-option *ngFor="let diveSite of diveSiteService.diveSites | async" [value]="diveSite.id">
     {{diveSite.name}}
   </mat-option>
-</mat-select>
+</mat-select>-->
 <ngx-charts-line-chart *ngIf="(dataObs | async) as data"
   [view]="view"
   [scheme]="colorScheme"
