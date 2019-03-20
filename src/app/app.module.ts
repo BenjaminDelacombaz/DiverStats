@@ -48,6 +48,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { EditBuddyComponent } from './views/edit-buddy/edit-buddy.component';
 import { DiveSitesFrequentationComponent } from './components/dive-sites-frequentation/dive-sites-frequentation.component';
 import { DiveSiteDepthChartComponent } from './components/dive-site-depth-chart/dive-site-depth-chart.component';
+import { DiveSitesComponent } from './views/dive-sites/dive-sites.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { DiveSiteDepthChartComponent } from './components/dive-site-depth-chart/
     EditBuddyComponent,
     DiveSitesFrequentationComponent,
     DiveSiteDepthChartComponent,
+    DiveSitesComponent,
   ],
   imports: [
     BrowserModule,
