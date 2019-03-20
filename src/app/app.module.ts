@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 // Angular material components
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -44,6 +46,8 @@ import { CreateBuddyComponent } from './views/create-buddy/create-buddy.componen
 import { BuddyFormComponent } from './components/buddy-form/buddy-form.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { EditBuddyComponent } from './views/edit-buddy/edit-buddy.component';
+import { DiveSitesFrequentationComponent } from './components/dive-sites-frequentation/dive-sites-frequentation.component';
+import { DiveSiteDepthChartComponent } from './components/dive-site-depth-chart/dive-site-depth-chart.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +64,8 @@ import { EditBuddyComponent } from './views/edit-buddy/edit-buddy.component';
     BuddyFormComponent,
     ConfirmComponent,
     EditBuddyComponent,
+    DiveSitesFrequentationComponent,
+    DiveSiteDepthChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +92,7 @@ import { EditBuddyComponent } from './views/edit-buddy/edit-buddy.component';
     MatCardModule,
     MatChipsModule,
     MatSlideToggleModule,
+    NgxChartsModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

@@ -1,0 +1,17 @@
+<!--<mat-select placeholder="Select a dive site">
+  <mat-option *ngFor="let diveSite of diveSiteService.diveSites | async" [value]="diveSite.id">
+    {{diveSite.name}}
+  </mat-option>
+</mat-select>-->
+<ngx-charts-line-chart *ngIf="(dataObs | async) as data"
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="data"
+  [gradient]="false"
+  xAxis="true"
+  yAxis="true"
+  showXAxisLabel="true"
+  showYAxisLabel="true"
+  xAxisLabel="Date of the dive"
+  yAxisLabel="Maximum depth">
+</ngx-charts-line-chart>
