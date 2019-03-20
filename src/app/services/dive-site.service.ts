@@ -31,4 +31,14 @@ export class DiveSiteService {
     object.id = _.payload.doc.id;
     return object;
   }
+
+  create(diveSite: DiveSite) {
+    this.angularFireStore
+      .doc<DiveSite>(`${this.col}/${this.angularFireStore.createId()}`).set(diveSite)
+  }
+
+  update(diveSite: DiveSite, diveSiteId: string) {
+      this.angularFireStore
+        .doc<DiveSite>(`${this.col}/${diveSiteId}`).update(diveSite)
+  }
 }

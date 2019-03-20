@@ -58,4 +58,27 @@ export class DiveSiteFormComponent implements OnInit {
     }
   }
 
+  private save() {
+    if (this.diveSiteForm.valid) {
+      // Form is valid
+      let diveSite: DiveSite = {
+        ...this.diveSiteForm.getRawValue(),
+        location: [this.diveSiteForm.getRawValue().longitude, this.diveSiteForm.getRawValue().latitude]
+      }
+      try {
+        if (this.diveSiteId == null) {
+          this.diveSiteService.create(diveSite)
+        } else {
+          this.diveSiteService.update(diveSite,this.diveSiteId)
+        }
+        this.router.navigate(['/dive-sites'])
+      } catch (err) {
+        this.snackBar.open(err.message, 'Close', { duration: 10000, panelClass: 'snack-error' })
+      }
+    } else {
+      // Validation error
+      this.snackBar.open('Please check that all fields are filled in.', 'Close', { duration: 10000, panelClass: 'snack-error' })
+    }
+  }
+
 }
