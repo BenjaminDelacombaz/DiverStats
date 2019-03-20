@@ -21,7 +21,7 @@ export class DiveSiteService {
       .valueChanges()
   }
 
-  private getDiveSites() {
+  getDiveSites() {
     return this.angularFireStore.collection<DiveSite>(this.col).snapshotChanges()
     .pipe(map(diveSites => diveSites.map(this.documentToDomainObject)))
   }

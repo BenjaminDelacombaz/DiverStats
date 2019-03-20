@@ -57,35 +57,6 @@ export class DiveService {
     }
   }
 
-  old_getDiveSitesFrequentation(userId: string) {
-    return this.angularFireStore
-      .collection<any>(this.colDive, sort => sort.where('diver', '==', userId))
-      .valueChanges()
-      .pipe(map(dives => {
-        let tempDiveSites: Array<string> = []
-        let tempCountDiveSites: Array<number> = []
-        let returnValue: Array<Object> = []
-        dives.map(dive => {
-          let index: number = tempDiveSites.indexOf(dive.dive_site)
-          if (index < 0) {
-            // Not in the array
-            tempDiveSites.push(dive.dive_site)
-            tempCountDiveSites.push(1)
-          } else {
-            // Already in the array
-            tempCountDiveSites[index] += 1
-          }
-        })
-        tempDiveSites.forEach((diveSite, i) => {
-          //this.diveSiteService.getDiveSite(diveSite).subscribe(diveSite => {
-          let value = { 'name': diveSite, 'value': tempCountDiveSites[i] }
-          returnValue.push(value)
-          //})
-        })
-        return returnValue
-      }))
-  }
-
   private getDiveSitesFromDives(userId: string) {
     return this.getDives(userId)
       .pipe(mergeMap(dives => {
