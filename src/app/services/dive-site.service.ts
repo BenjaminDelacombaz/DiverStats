@@ -41,4 +41,8 @@ export class DiveSiteService {
       this.angularFireStore
         .doc<DiveSite>(`${this.col}/${diveSiteId}`).update(diveSite)
   }
+
+  delete(diveSite: DiveSite) {
+    return this.angularFireStore.doc<DiveSite>(`${this.col}/${diveSite.id}`).delete()
+  }
 }

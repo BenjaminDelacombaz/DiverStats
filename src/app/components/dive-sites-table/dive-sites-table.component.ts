@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { DiveSite } from 'src/app/models/dive-site';
+import { ConfirmComponent } from '../confirm/confirm.component';
 
 @Component({
   selector: 'app-dive-sites-table',
@@ -23,4 +24,22 @@ export class DiveSitesTableComponent implements OnInit {
     this.diveSites = this.diveSiteService.getDiveSites()
   }
 
+  private openConfirmDeleteDialog(diveSite: DiveSite): void {
+    const dialogRef = this.dialog.open(ConfirmComponent,
+      {
+        width: '50%',
+        data: `Do you really want to delete this buddy: ${diveSite.name}?`
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          try {
+            // Delete ressource
+            this.diveSiteService.delete(diveSite)
+          } catch (err) {
+            // Deletion error
+            this.snackBar.open('An error occurred during deletion.', 'Close', { duration: 10000, panelClass: 'snack-error' })
+          }
+        }
+      })
+    }
 }
