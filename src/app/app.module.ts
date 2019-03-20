@@ -49,6 +49,7 @@ import { EditBuddyComponent } from './views/edit-buddy/edit-buddy.component';
 import { DiveSitesFrequentationComponent } from './components/dive-sites-frequentation/dive-sites-frequentation.component';
 import { DiveSiteDepthChartComponent } from './components/dive-site-depth-chart/dive-site-depth-chart.component';
 import { DiveSitesComponent } from './views/dive-sites/dive-sites.component';
+import { DiveSitesTableComponent } from './components/dive-sites-table/dive-sites-table.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { DiveSitesComponent } from './views/dive-sites/dive-sites.component';
     DiveSitesFrequentationComponent,
     DiveSiteDepthChartComponent,
     DiveSitesComponent,
+    DiveSitesTableComponent,
   ],
   imports: [
     BrowserModule,
