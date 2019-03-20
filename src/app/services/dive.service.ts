@@ -93,7 +93,7 @@ export class DiveService {
       let current = null
       let cnt = 0
 
-      diveSitesName.forEach((diveSiteName,i) => {
+      diveSitesName.forEach((diveSiteName, i) => {
         if (diveSiteName != current) {
           if (cnt > 0) {
             diveSitesFrequentation.push({ name: current, value: cnt })
@@ -109,6 +109,24 @@ export class DiveService {
       }
       return diveSitesFrequentation
     }))
+  }
+
+  getDiveSiteDepth(userId: string, diveSiteId: string) {
+    let data: Object[] = []
+    let tempData: Object[] = []
+    return this.angularFireStore
+      .collection<Dive>(this.colDive, sort => sort.where('diver', '==', userId)
+        .where('dive_site', '==', diveSiteId).orderBy('number'))
+      .valueChanges()
+      .pipe(map(dives => {
+        dives.forEach(dive => {
+          let date = new Date(0)
+          date.setSeconds(dive.date.seconds + 3600)
+          tempData.push({ name: date, value: Number(dive.depth) })
+        })
+        data.push({ name: diveSiteId, series: tempData })
+        return data
+      }))
   }
 
 
