@@ -65,7 +65,7 @@ export class DiveSiteFormComponent implements OnInit {
       // Form is valid
       let diveSite: DiveSite = {
         ...this.diveSiteForm.getRawValue(),
-        location: new firebase.firestore.GeoPoint(Number(this.diveSiteForm.getRawValue().latitude), Number(this.diveSiteForm.getRawValue().longitude)),
+        location: new firebase.firestore.GeoPoint(this.diveSiteForm.getRawValue().latitude, this.diveSiteForm.getRawValue().longitude),
         water_type: Number(this.diveSiteForm.getRawValue().water_type),
         difficulty: Number(this.diveSiteForm.getRawValue().difficulty)
       }
