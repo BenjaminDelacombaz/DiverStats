@@ -32,14 +32,21 @@ export class DiveService {
   private getDives(userId: string) {
     return this.angularFireStore
       .collection<Dive>(this.colDive, sort => sort.where('diver', '==', userId).orderBy('number'))
-      .valueChanges()
+      .snapshotChanges()
       .pipe(map(dives => dives.map(dive => {
+        let newDive = this.documentToDomainObject(dive)
         return {
-          ...dive,
-          fullDiveSite: this.diveSiteService.getDiveSite(dive.dive_site),
-          fullBuddies: dive.buddies.map(buddyId => { return this.buddyService.getBuddy(buddyId) })
+          ...newDive,
+          fullDiveSite: this.diveSiteService.getDiveSite(newDive.dive_site),
+          fullBuddies: newDive.buddies.map(buddyId => { return this.buddyService.getBuddy(buddyId) })
         }
       })))
+  }
+
+  private documentToDomainObject = _ => {
+    const object = _.payload.doc.data();
+    object.id = _.payload.doc.id;
+    return object;
   }
 
   create(dive: Dive) {
