@@ -43,18 +43,14 @@ export class DiveService {
   }
 
   create(dive: Dive) {
-    try {
-      this.angularFireAuth.user.subscribe(user => {
-        this.getDives(user.uid).pipe(first()).subscribe(dives => {
-          dive.number = dives.length + 1
-          dive.diver = user.uid
-          this.angularFireStore
-            .doc<Dive>(`${this.colDive}/${this.angularFireStore.createId()}`).set(dive)
-        })
+    this.angularFireAuth.user.subscribe(user => {
+      this.getDives(user.uid).pipe(first()).subscribe(dives => {
+        dive.number = dives.length + 1
+        dive.diver = user.uid
+        this.angularFireStore
+          .doc<Dive>(`${this.colDive}/${this.angularFireStore.createId()}`).set(dive)
       })
-    } catch(err) {
-      console.log(err)
-    }
+    })
   }
 
   private getDiveSitesFromDives(userId: string) {
