@@ -2,7 +2,7 @@ export interface DiveSite {
   id: string
   description: string
   difficulty: number
-  localtion: Array<number>
+  location: any
   name: string
   water_type: number
 }
