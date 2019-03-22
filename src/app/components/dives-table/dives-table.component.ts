@@ -16,7 +16,7 @@ import { Dive } from 'src/app/models/dive';
 })
 export class DivesTableComponent {
   
-  test: Observable<DiveSite>
+  private dives: Observable<Dive[]>
 
   displayedColumns: string[] = ['number', 'dive-site', 'date', 'depth', 'duration', 'buddies', 'visibility', 'temperature', 'comments', 'action']
   constructor(
@@ -24,7 +24,11 @@ export class DivesTableComponent {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router,
-    private afAuth: AngularFireAuth) { }
+    private afAuth: AngularFireAuth) {
+      this.afAuth.user.subscribe(user => {
+        this.dives = this.diveService.getDives(user.uid)
+      })
+    }
 
   private openConfirmDeleteDialog(dive: Dive): void {
     const dialogRef = this.dialog.open(ConfirmComponent,

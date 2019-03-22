@@ -29,7 +29,7 @@ export class DiveService {
     })
   }
 
-  private getDives(userId: string) {
+  getDives(userId: string) {
     return this.angularFireStore
       .collection<Dive>(this.colDive, sort => sort.where('diver', '==', userId).orderBy('number'))
       .snapshotChanges()
