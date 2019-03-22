@@ -1,4 +1,5 @@
 export interface Dive {
+  id: string
   buddies: Array<string>
   comments: string
   date: any

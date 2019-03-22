@@ -60,6 +60,10 @@ export class DiveService {
     })
   }
 
+  delete(dive: Dive) {
+    return this.angularFireStore.doc<Dive>(`${this.colDive}/${dive.id}`).delete()
+  }
+
   private getDiveSitesFromDives(userId: string) {
     return this.getDives(userId)
       .pipe(mergeMap(dives => {
