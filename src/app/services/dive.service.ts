@@ -122,5 +122,20 @@ export class DiveService {
       }))
   }
 
+  getDive(diveId: string) {
+    return this.angularFireStore
+      .doc<Dive>(`${this.colDive}/${diveId}`)
+      .valueChanges().pipe(map(dive => {
+        return {
+          ...dive,
+          fullBuddies: dive.buddies.map(buddyId => { return this.buddyService.getBuddy(buddyId) })
+        }
+      }))
+  }
+
+  update(dive: Dive, diveId: string) {
+      this.angularFireStore
+        .doc<Dive>(`${this.colDive}/${diveId}`).update(dive)
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiveSiteService } from 'src/app/services/dive-site.service';
 import { GLOBAL } from 'src/app/app.const';
@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dive } from 'src/app/models/dive';
 import { DiveService } from 'src/app/services/dive.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dive-form',
@@ -18,7 +19,13 @@ export class DiveFormComponent implements OnInit {
   // Initialize the form group
   private diveForm: FormGroup
   private visibilities: Array<Object> = []
-  private buddies: Array<Buddy> = []
+  private buddies: Observable<Buddy>[] = []
+  private buddyIds: string[] = []
+
+  @Input()
+  private dive: Observable<Dive> = null
+  @Input()
+  private diveId: string = null
 
   constructor(
     private fb: FormBuilder,
@@ -42,21 +49,45 @@ export class DiveFormComponent implements OnInit {
       visibility: ['', Validators.required],
       comments:  ['', Validators.required],
     })
+    if (this.dive != null) {
+      this.dive.subscribe(dive => {
+        let date = new Date(0)
+        date.setSeconds(dive.date.seconds + 3600)
+        this.diveForm.setValue(
+          {
+            dive_site: dive.dive_site,
+            date: date,
+            depth: dive.depth,
+            duration: dive.depth,
+            temperature: dive.temperature,
+            visibility: dive.visibility.toString(),
+            comments: dive.comments
+          })
+          this.buddyIds = dive.buddies
+          this.buddies = dive.fullBuddies
+      })
+    }
   }
 
-  private removeBuddy(buddyParam: any) {
-    this.buddies.splice(this.buddies.findIndex(buddy => buddy.id === buddyParam.id),1)
+  private removeBuddy(buddyParam: Observable<Buddy>) {
+    let i = this.buddies.findIndex(buddy => buddy === buddyParam)
+    this.buddies.splice(i,1)
+    this.buddyIds.splice(i,1)
   }
 
-  private create() {
+  private save() {
     if (this.diveForm.valid) {
       // Form is valid
       let dive: Dive = {
         ...this.diveForm.getRawValue(),
-        buddies: this.buddies.map(buddy => buddy.id)
+        buddies: this.buddyIds
       }
       try {
-        this.diveService.create(dive)
+        if(this.diveId == null) {
+          this.diveService.create(dive)
+        } else {
+          this.diveService.update(dive, this.diveId)
+        }
         this.router.navigate(['/dives'])
       } catch(err) {
         this.snackBar.open(err.message,'Close',{ duration: 10000, panelClass: 'snack-error' })

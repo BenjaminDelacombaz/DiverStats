@@ -1,5 +1,5 @@
-<h1 mat-dialog-title>Create a dive</h1>
-<form [formGroup]="diveForm" (ngSubmit)="create()">
+<h1 mat-dialog-title>Manage a dive</h1>
+<form [formGroup]="diveForm" (ngSubmit)="save()">
   <mat-grid-list cols="1" rowHeight="80px" class="container">
     <mat-grid-tile>
       <mat-form-field class="full-width">
@@ -60,7 +60,7 @@
     <mat-grid-tile>
       <div class="right-align">
         <button routerLink="/dives" mat-raised-button color="warn">Cancel</button>
-        <button mat-raised-button color="primary" type="submit">Create</button>
+        <button mat-raised-button color="primary" type="submit">Save</button>
       </div>
     </mat-grid-tile>
   </mat-grid-list> 
@@ -69,7 +69,7 @@
 <ng-template #withBuddies>
   <mat-chip-list>
     <mat-chip color="primary" selected *ngFor="let buddy of buddies">
-      {{buddy.firstname}} {{buddy.lastname}}
+      {{(buddy | async)?.firstname}} {{(buddy | async)?.lastname}}
       <button mat-icon-button (click)="removeBuddy(buddy)">
         <mat-icon class="smallerIcon">close</mat-icon>
       </button>

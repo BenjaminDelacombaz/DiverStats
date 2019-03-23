@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Dive } from 'src/app/models/dive';
+import { Observable } from 'rxjs';
+import { DiveService } from 'src/app/services/dive.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-dive',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditDiveComponent implements OnInit {
 
-  constructor() { }
+  private dive: Observable<Dive>
+  private diveId: string
+
+  constructor(
+    private route: ActivatedRoute,
+    private diveService: DiveService
+  ) { }
 
   ngOnInit() {
+    this.diveId = this.route.snapshot.paramMap.get('id')
+    this.dive = this.diveService.getDive(this.diveId)
   }
 
 }

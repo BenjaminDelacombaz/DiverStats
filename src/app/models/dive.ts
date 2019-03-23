@@ -10,4 +10,5 @@ export interface Dive {
   temperature: number
   visibility: number
   number: number
+  fullBuddies: any
 }
