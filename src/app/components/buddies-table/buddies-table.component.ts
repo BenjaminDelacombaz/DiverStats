@@ -22,7 +22,7 @@ export class BuddiesTableComponent implements OnInit {
   displayedColumns: any[] = []
 
   private buddies: Observable<Buddy[]>
-  private selection = new SelectionModel<Buddy>(true, []);
+  selection = new SelectionModel<Buddy>(true, []);
 
   constructor(
     private buddyService: BuddyService,
@@ -37,10 +37,10 @@ export class BuddiesTableComponent implements OnInit {
       { def: 'select', show: this.selectionMode }, 
       { def: 'firstname', show: true },
       { def: 'lastname', show: true }, 
-      { def: 'email', show: true }, 
-      { def: 'phone', show: true }, 
-      { def: 'birthdate', show: true }, 
-      { def: 'public', show: true }, 
+      { def: 'email', show: !this.selectionMode }, 
+      { def: 'phone', show: !this.selectionMode }, 
+      { def: 'birthdate', show: !this.selectionMode }, 
+      { def: 'public', show: !this.selectionMode }, 
       { def: 'action', show: !this.selectionMode },
     ]
     this.afAuth.user.subscribe(user => {

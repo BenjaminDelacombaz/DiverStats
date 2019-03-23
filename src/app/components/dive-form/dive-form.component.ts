@@ -104,21 +104,17 @@ export class DiveFormComponent implements OnInit {
   private openBuddiesTable(buddies: Observable<Buddy>[]): void {
     const dialogRef = this.dialog.open(SelectBuddiesComponent,
       {
-        width: '90%',
-        //data: buddies
+        width: '90%'
       });
 
-    /*dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        try {
-          // Delete ressource
-          this.diveService.delete(dive)
-        } catch (err) {
-          // Deletion error
-          this.snackBar.open('An error occurred during deletion.', 'Close', { duration: 10000, panelClass: 'snack-error' })
-        }
+        result.buddyIds.forEach((buddyId, i) => {
+          this.buddyIds.push(buddyId)
+          this.buddies.push(result.buddies[i])
+        })
       }
-    })*/
+    })
   }
 
 }
