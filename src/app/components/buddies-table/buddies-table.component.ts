@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BuddyService } from 'src/app/services/buddy.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-buddies-table',
@@ -15,9 +16,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class BuddiesTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'phone', 'birthdate', 'public', 'action']
+  @Input()
+  private selectionMode: boolean = false
+
+  displayedColumns: any[] = []
 
   private buddies: Observable<Buddy[]>
+  selection = new SelectionModel<Buddy>(true, []);
 
   constructor(
     private buddyService: BuddyService,
@@ -28,6 +33,16 @@ export class BuddiesTableComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.displayedColumns = [
+      { def: 'select', show: this.selectionMode }, 
+      { def: 'firstname', show: true },
+      { def: 'lastname', show: true }, 
+      { def: 'email', show: !this.selectionMode }, 
+      { def: 'phone', show: !this.selectionMode }, 
+      { def: 'birthdate', show: !this.selectionMode }, 
+      { def: 'public', show: !this.selectionMode }, 
+      { def: 'action', show: !this.selectionMode },
+    ]
     this.afAuth.user.subscribe(user => {
       this.buddies = this.buddyService.getBuddies(user.uid)
     })
@@ -51,6 +66,13 @@ export class BuddiesTableComponent implements OnInit {
         }
       }
     })
+  }
+
+  getDisplayedColumns(): string[] {
+    return this.displayedColumns
+      .filter(cd => cd.show)
+      .map(cd => {
+        return cd.def});
   }
 
 }

@@ -25,6 +25,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -53,6 +54,8 @@ import { DiveSitesTableComponent } from './components/dive-sites-table/dive-site
 import { DiveSiteFormComponent } from './components/dive-site-form/dive-site-form.component';
 import { CreateDiveSiteComponent } from './views/create-dive-site/create-dive-site.component';
 import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.component';
+import { EditDiveComponent } from './views/edit-dive/edit-dive.component';
+import { SelectBuddiesComponent } from './components/select-buddies/select-buddies.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,8 @@ import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.com
     DiveSiteFormComponent,
     CreateDiveSiteComponent,
     EditDiveSiteComponent,
+    EditDiveComponent,
+    SelectBuddiesComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,9 +108,10 @@ import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.com
     MatChipsModule,
     MatSlideToggleModule,
     NgxChartsModule,
+    MatCheckboxModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
-  entryComponents: [LoginFormComponent, ConfirmComponent]
+  entryComponents: [LoginFormComponent, ConfirmComponent, SelectBuddiesComponent]
 })
 export class AppModule { }

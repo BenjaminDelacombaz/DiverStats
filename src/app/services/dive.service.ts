@@ -29,32 +29,39 @@ export class DiveService {
     })
   }
 
-  private getDives(userId: string) {
+  getDives(userId: string) {
     return this.angularFireStore
       .collection<Dive>(this.colDive, sort => sort.where('diver', '==', userId).orderBy('number'))
-      .valueChanges()
+      .snapshotChanges()
       .pipe(map(dives => dives.map(dive => {
+        let newDive = this.documentToDomainObject(dive)
         return {
-          ...dive,
-          fullDiveSite: this.diveSiteService.getDiveSite(dive.dive_site),
-          fullBuddies: dive.buddies.map(buddyId => { return this.buddyService.getBuddy(buddyId) })
+          ...newDive,
+          fullDiveSite: this.diveSiteService.getDiveSite(newDive.dive_site),
+          fullBuddies: newDive.buddies.map(buddyId => { return this.buddyService.getBuddy(buddyId) })
         }
       })))
   }
 
+  private documentToDomainObject = _ => {
+    const object = _.payload.doc.data();
+    object.id = _.payload.doc.id;
+    return object;
+  }
+
   create(dive: Dive) {
-    try {
-      this.angularFireAuth.user.subscribe(user => {
-        this.getDives(user.uid).pipe(first()).subscribe(dives => {
-          dive.number = dives.length + 1
-          dive.diver = user.uid
-          this.angularFireStore
-            .doc<Dive>(`${this.colDive}/${this.angularFireStore.createId()}`).set(dive)
-        })
+    this.angularFireAuth.user.subscribe(user => {
+      this.getDives(user.uid).pipe(first()).subscribe(dives => {
+        dive.number = dives.length + 1
+        dive.diver = user.uid
+        this.angularFireStore
+          .doc<Dive>(`${this.colDive}/${this.angularFireStore.createId()}`).set(dive)
       })
-    } catch(err) {
-      console.log(err)
-    }
+    })
+  }
+
+  delete(dive: Dive) {
+    return this.angularFireStore.doc<Dive>(`${this.colDive}/${dive.id}`).delete()
   }
 
   private getDiveSitesFromDives(userId: string) {
@@ -115,5 +122,20 @@ export class DiveService {
       }))
   }
 
+  getDive(diveId: string) {
+    return this.angularFireStore
+      .doc<Dive>(`${this.colDive}/${diveId}`)
+      .valueChanges().pipe(map(dive => {
+        return {
+          ...dive,
+          fullBuddies: dive.buddies.map(buddyId => { return this.buddyService.getBuddy(buddyId) })
+        }
+      }))
+  }
+
+  update(dive: Dive, diveId: string) {
+      this.angularFireStore
+        .doc<Dive>(`${this.colDive}/${diveId}`).update(dive)
+  }
 
 }
