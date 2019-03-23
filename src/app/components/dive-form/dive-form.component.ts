@@ -8,6 +8,8 @@ import { Dive } from 'src/app/models/dive';
 import { DiveService } from 'src/app/services/dive.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectBuddiesComponent } from '../select-buddies/select-buddies.component';
 
 @Component({
   selector: 'app-dive-form',
@@ -32,7 +34,8 @@ export class DiveFormComponent implements OnInit {
     private diveSiteService: DiveSiteService,
     private snackBar: MatSnackBar,
     private diveService: DiveService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
@@ -58,7 +61,7 @@ export class DiveFormComponent implements OnInit {
             dive_site: dive.dive_site,
             date: date,
             depth: dive.depth,
-            duration: dive.depth,
+            duration: dive.duration,
             temperature: dive.temperature,
             visibility: dive.visibility.toString(),
             comments: dive.comments
@@ -96,6 +99,26 @@ export class DiveFormComponent implements OnInit {
       // Validation error
       this.snackBar.open('Please check that all fields are filled in.','Close',{ duration: 10000, panelClass: 'snack-error' })
     }
+  }
+
+  private openBuddiesTable(buddies: Observable<Buddy>[]): void {
+    const dialogRef = this.dialog.open(SelectBuddiesComponent,
+      {
+        width: '90%',
+        //data: buddies
+      });
+
+    /*dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        try {
+          // Delete ressource
+          this.diveService.delete(dive)
+        } catch (err) {
+          // Deletion error
+          this.snackBar.open('An error occurred during deletion.', 'Close', { duration: 10000, panelClass: 'snack-error' })
+        }
+      }
+    })*/
   }
 
 }

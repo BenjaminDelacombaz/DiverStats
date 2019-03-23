@@ -53,7 +53,7 @@
       <mat-card class="full-width">
         <div *ngIf="buddies.length > 0; then withBuddies else noBuddies"></div>  
       </mat-card>
-      <button mat-icon-button type="button">
+      <button mat-icon-button type="button" (click)="openBuddiesTable(buddies)">
         <mat-icon color="primary" class="biggerIcon">add_circle</mat-icon>
       </button>
     </mat-grid-tile>

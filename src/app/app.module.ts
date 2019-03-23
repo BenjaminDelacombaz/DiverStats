@@ -54,6 +54,7 @@ import { DiveSiteFormComponent } from './components/dive-site-form/dive-site-for
 import { CreateDiveSiteComponent } from './views/create-dive-site/create-dive-site.component';
 import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.component';
 import { EditDiveComponent } from './views/edit-dive/edit-dive.component';
+import { SelectBuddiesComponent } from './components/select-buddies/select-buddies.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { EditDiveComponent } from './views/edit-dive/edit-dive.component';
     CreateDiveSiteComponent,
     EditDiveSiteComponent,
     EditDiveComponent,
+    SelectBuddiesComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,6 +110,6 @@ import { EditDiveComponent } from './views/edit-dive/edit-dive.component';
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
-  entryComponents: [LoginFormComponent, ConfirmComponent]
+  entryComponents: [LoginFormComponent, ConfirmComponent, SelectBuddiesComponent]
 })
 export class AppModule { }
