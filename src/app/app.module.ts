@@ -25,6 +25,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -107,6 +108,7 @@ import { SelectBuddiesComponent } from './components/select-buddies/select-buddi
     MatChipsModule,
     MatSlideToggleModule,
     NgxChartsModule,
+    MatCheckboxModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
