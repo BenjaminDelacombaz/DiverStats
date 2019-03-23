@@ -9,6 +9,7 @@ import { DiveSitesComponent } from './views/dive-sites/dive-sites.component';
 import { CreateDiveSiteComponent } from './views/create-dive-site/create-dive-site.component';
 import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.component';
 import { EditDiveComponent } from './views/edit-dive/edit-dive.component';
+import { HomeComponent } from './views/home/home.component';
 
 const routes: Routes = [
   { path: 'dives', component: DivesComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'dive-sites/create', component: CreateDiveSiteComponent },
   { path: 'dive-sites/edit/:id', component: EditDiveSiteComponent },
   { path: 'dives/edit/:id', component: EditDiveComponent },
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({

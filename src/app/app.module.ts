@@ -56,6 +56,7 @@ import { CreateDiveSiteComponent } from './views/create-dive-site/create-dive-si
 import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.component';
 import { EditDiveComponent } from './views/edit-dive/edit-dive.component';
 import { SelectBuddiesComponent } from './components/select-buddies/select-buddies.component';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { SelectBuddiesComponent } from './components/select-buddies/select-buddi
     EditDiveSiteComponent,
     EditDiveComponent,
     SelectBuddiesComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
