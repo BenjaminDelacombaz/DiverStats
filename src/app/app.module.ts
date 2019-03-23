@@ -53,6 +53,7 @@ import { DiveSitesTableComponent } from './components/dive-sites-table/dive-site
 import { DiveSiteFormComponent } from './components/dive-site-form/dive-site-form.component';
 import { CreateDiveSiteComponent } from './views/create-dive-site/create-dive-site.component';
 import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.component';
+import { EditDiveComponent } from './views/edit-dive/edit-dive.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { EditDiveSiteComponent } from './views/edit-dive-site/edit-dive-site.com
     DiveSiteFormComponent,
     CreateDiveSiteComponent,
     EditDiveSiteComponent,
+    EditDiveComponent,
   ],
   imports: [
     BrowserModule,
