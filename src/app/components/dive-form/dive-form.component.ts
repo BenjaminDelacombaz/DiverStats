@@ -19,9 +19,9 @@ import { SelectBuddiesComponent } from '../select-buddies/select-buddies.compone
 export class DiveFormComponent implements OnInit {
 
   // Initialize the form group
-  private diveForm: FormGroup
-  private visibilities: Array<Object> = []
-  private buddies: Observable<Buddy>[] = []
+  diveForm: FormGroup
+  visibilities: Array<Object> = []
+  buddies: Observable<Buddy>[] = []
   private buddyIds: string[] = []
 
   @Input()
@@ -30,12 +30,12 @@ export class DiveFormComponent implements OnInit {
   private diveId: string = null
 
   constructor(
-    private fb: FormBuilder,
-    private diveSiteService: DiveSiteService,
-    private snackBar: MatSnackBar,
-    private diveService: DiveService,
-    private router: Router,
-    private dialog: MatDialog
+    public fb: FormBuilder,
+    public diveSiteService: DiveSiteService,
+    public snackBar: MatSnackBar,
+    public diveService: DiveService,
+    public router: Router,
+    public dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
@@ -72,13 +72,13 @@ export class DiveFormComponent implements OnInit {
     }
   }
 
-  private removeBuddy(buddyParam: Observable<Buddy>) {
+  removeBuddy(buddyParam: Observable<Buddy>) {
     let i = this.buddies.findIndex(buddy => buddy === buddyParam)
     this.buddies.splice(i,1)
     this.buddyIds.splice(i,1)
   }
 
-  private save() {
+  save() {
     if (this.diveForm.valid) {
       // Form is valid
       let dive: Dive = {
@@ -101,7 +101,7 @@ export class DiveFormComponent implements OnInit {
     }
   }
 
-  private openBuddiesTable(buddies: Observable<Buddy>[]): void {
+  openBuddiesTable(buddies: Observable<Buddy>[]): void {
     const dialogRef = this.dialog.open(SelectBuddiesComponent,
       {
         width: '90%'

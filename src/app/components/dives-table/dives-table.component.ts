@@ -16,15 +16,15 @@ import { Dive } from 'src/app/models/dive';
 })
 export class DivesTableComponent {
   
-  private dives: Observable<Dive[]>
+  dives: Observable<Dive[]>
 
   displayedColumns: string[] = ['number', 'dive-site', 'date', 'depth', 'duration', 'buddies', 'visibility', 'temperature', 'comments', 'action']
   constructor(
-    private diveService: DiveService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private router: Router,
-    private afAuth: AngularFireAuth) {
+    public diveService: DiveService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
+    public router: Router,
+    public afAuth: AngularFireAuth) {
       this.afAuth.user.subscribe(user => {
         this.dives = this.diveService.getDives(user.uid)
       })

@@ -11,11 +11,11 @@ import { Observable } from 'rxjs';
 })
 export class EditDiveSiteComponent implements OnInit {
 
-  private diveSite: Observable<DiveSite>
-  private diveSiteId: string
+  diveSite: Observable<DiveSite>
+  diveSiteId: string
 
-  constructor(private route: ActivatedRoute,
-    private diveSiteService: DiveSiteService) { }
+  constructor(public route: ActivatedRoute,
+    public diveSiteService: DiveSiteService) { }
 
   ngOnInit() {
     this.diveSiteId = this.route.snapshot.paramMap.get('id');

@@ -11,12 +11,12 @@ import { Observable } from 'rxjs';
 })
 export class EditBuddyComponent implements OnInit {
 
-  private buddy: Observable<Buddy>
-  private buddyId: string
+  buddy: Observable<Buddy>
+  buddyId: string
 
   constructor(
-    private route: ActivatedRoute,
-    private buddyService: BuddyService
+    public route: ActivatedRoute,
+    public buddyService: BuddyService
   ) { }
 
   ngOnInit() {

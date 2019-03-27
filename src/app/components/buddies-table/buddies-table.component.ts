@@ -21,15 +21,15 @@ export class BuddiesTableComponent implements OnInit {
 
   displayedColumns: any[] = []
 
-  private buddies: Observable<Buddy[]>
+  buddies: Observable<Buddy[]>
   selection = new SelectionModel<Buddy>(true, []);
 
   constructor(
-    private buddyService: BuddyService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private router: Router,
-    private afAuth: AngularFireAuth) {
+    public buddyService: BuddyService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
+    public router: Router,
+    public afAuth: AngularFireAuth) {
     }
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class BuddiesTableComponent implements OnInit {
     })
   }
 
-  private openConfirmDeleteDialog(buddy: Buddy): void {
+  openConfirmDeleteDialog(buddy: Buddy): void {
     const dialogRef = this.dialog.open(ConfirmComponent,
       {
         width: '50%',

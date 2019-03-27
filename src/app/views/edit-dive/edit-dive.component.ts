@@ -11,12 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditDiveComponent implements OnInit {
 
-  private dive: Observable<Dive>
-  private diveId: string
+  dive: Observable<Dive>
+  diveId: string
 
   constructor(
-    private route: ActivatedRoute,
-    private diveService: DiveService
+    public route: ActivatedRoute,
+    public diveService: DiveService
   ) { }
 
   ngOnInit() {

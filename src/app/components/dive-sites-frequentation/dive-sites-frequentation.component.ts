@@ -18,7 +18,7 @@ export class DiveSitesFrequentationComponent implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private afAuth: AngularFireAuth, private diveService: DiveService) { }
+  constructor(public afAuth: AngularFireAuth, public diveService: DiveService) { }
 
   ngOnInit() {
     // this.afAuth.user.subscribe(user => {

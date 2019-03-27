@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
 })
 export class BuddyFormComponent implements OnInit {
 
-  private buddyForm: FormGroup
+  buddyForm: FormGroup
 
   @Input()
   private buddy: Observable<Buddy> = null
@@ -23,10 +23,10 @@ export class BuddyFormComponent implements OnInit {
   private buddyId: string = null
 
   constructor(
-    private fb: FormBuilder,
-    private snackBar: MatSnackBar,
-    private buddyServide: BuddyService,
-    private router: Router,
+    public fb: FormBuilder,
+    public snackBar: MatSnackBar,
+    public buddyServide: BuddyService,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class BuddyFormComponent implements OnInit {
     }
   }
 
-  private save() {
+  save() {
     if (this.buddyForm.valid) {
       // Form is valid
       let buddy: Buddy = {

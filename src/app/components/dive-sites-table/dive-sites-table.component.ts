@@ -13,12 +13,12 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 })
 export class DiveSitesTableComponent implements OnInit {
 
-  private displayedColumns: string[] = ['name', 'water_type', 'difficulty', 'description', 'action']
-  private diveSites: Observable<DiveSite[]>
+  displayedColumns: string[] = ['name', 'water_type', 'difficulty', 'description', 'action']
+  diveSites: Observable<DiveSite[]>
 
-  constructor(private diveSiteService: DiveSiteService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+  constructor(public diveSiteService: DiveSiteService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.diveSites = this.diveSiteService.getDiveSites()

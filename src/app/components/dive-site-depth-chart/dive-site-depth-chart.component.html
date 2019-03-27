@@ -1,6 +1,6 @@
 <h3 mat-dialog-title>Dive site depths</h3>
 <mat-form-field>
-  <mat-select placeholder="Select a dive site" [(ngModel)]="selectedDiveSite" (selectionChange)="changeDiveSite(event)">
+  <mat-select placeholder="Select a dive site" [(ngModel)]="selectedDiveSite" (selectionChange)="changeDiveSite()">
     <mat-option *ngFor="let diveSite of diveSites | async" [value]="diveSite.id">
       {{diveSite.name}}
     </mat-option>

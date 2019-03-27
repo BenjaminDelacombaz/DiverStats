@@ -18,8 +18,8 @@ export class SelectBuddiesComponent implements OnInit {
   @ViewChild(BuddiesTableComponent) buddiesTableComponent;
 
   constructor(
-    private buddyService: BuddyService,
-    private dialogRef: MatDialogRef<SelectBuddiesComponent>) { }
+    public buddyService: BuddyService,
+    public dialogRef: MatDialogRef<SelectBuddiesComponent>) { }
 
   ngOnInit() {
   }

@@ -15,20 +15,20 @@ import * as firebase from 'firebase/app'
 })
 export class DiveSiteFormComponent implements OnInit {
 
-  private diveSiteForm: FormGroup
+  diveSiteForm: FormGroup
 
   @Input()
   private diveSite: Observable<DiveSite> = null
   @Input()
   private diveSiteId: string = null
 
-  private waterTypes: Array<Object> = []
-  private difficulties: Array<Object> = []
+  waterTypes: Array<Object> = []
+  difficulties: Array<Object> = []
 
   constructor(private fb: FormBuilder,
-    private snackBar: MatSnackBar,
-    private diveSiteService: DiveSiteService,
-    private router: Router) { }
+    public snackBar: MatSnackBar,
+    public diveSiteService: DiveSiteService,
+    public router: Router) { }
 
   ngOnInit() {
     // Set water types
@@ -60,7 +60,7 @@ export class DiveSiteFormComponent implements OnInit {
     }
   }
 
-  private save() {
+  save() {
     if (this.diveSiteForm.valid) {
       // Form is valid
       let diveSite: DiveSite = {

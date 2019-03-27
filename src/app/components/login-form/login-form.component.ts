@@ -11,12 +11,12 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginFormComponent {
 
-  private hideState: boolean = true
+  public hideState: boolean = true
 
   // Initialize the form group
-  private loginForm: FormGroup
+  public loginForm: FormGroup
 
-  constructor(private snackBar: MatSnackBar, private userService: UserService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginFormComponent>) {
+  constructor(public snackBar: MatSnackBar, public userService: UserService, public fb: FormBuilder, public dialogRef: MatDialogRef<LoginFormComponent>) {
   }
 
   ngOnInit(): void {
@@ -44,11 +44,11 @@ export class LoginFormComponent {
     }
   }
 
-  private cancel(): void {
+  cancel(): void {
     this.dialogRef.close()
   }
 
-  private hide(): void {
+  hide(): void {
     this.hideState = !this.hideState
   }
 }

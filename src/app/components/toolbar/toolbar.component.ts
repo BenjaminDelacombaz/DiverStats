@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private userService: UserService, private dialog: MatDialog) { }
+  constructor(public userService: UserService, public dialog: MatDialog) { }
 
   ngOnInit() {
     

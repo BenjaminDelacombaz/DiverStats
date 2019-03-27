@@ -23,9 +23,9 @@ export class DiveSiteDepthChartComponent implements OnInit {
   };
 
   constructor(
-    private diveService: DiveService,
-    private afAuth: AngularFireAuth,
-    private diveSiteService: DiveSiteService) { }
+    public diveService: DiveService,
+    public afAuth: AngularFireAuth,
+    public diveSiteService: DiveSiteService) { }
 
   ngOnInit() {
     this.diveSites = this.diveSiteService.getDiveSites()
@@ -35,7 +35,7 @@ export class DiveSiteDepthChartComponent implements OnInit {
     })
   }
 
-  private changeDiveSite() {
+  changeDiveSite() {
     this.afAuth.user.subscribe(user => {
       this.dataObs = this.diveService.getDiveSiteDepth(user.uid, this.selectedDiveSite)
     })
