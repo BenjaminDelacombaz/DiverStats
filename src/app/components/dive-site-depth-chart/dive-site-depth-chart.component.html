@@ -1,0 +1,20 @@
+<h3 mat-dialog-title>Dive site depths</h3>
+<mat-form-field>
+  <mat-select placeholder="Select a dive site" [(ngModel)]="selectedDiveSite" (selectionChange)="changeDiveSite(event)">
+    <mat-option *ngFor="let diveSite of diveSites | async" [value]="diveSite.id">
+      {{diveSite.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<ngx-charts-line-chart *ngIf="(dataObs | async) as data"
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="data"
+  [gradient]="false"
+  xAxis="true"
+  yAxis="true"
+  showXAxisLabel="true"
+  showYAxisLabel="true"
+  xAxisLabel="Date of the dive"
+  yAxisLabel="Depth">
+</ngx-charts-line-chart>

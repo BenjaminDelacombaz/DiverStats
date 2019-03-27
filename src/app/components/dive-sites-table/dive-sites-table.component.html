@@ -1,0 +1,36 @@
+<table mat-table [dataSource]="diveSites" [trackBy]="(diveSites | async)?.id" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let diveSite"> {{ diveSite.name }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="water_type">
+    <th mat-header-cell *matHeaderCellDef> Water type </th>
+    <td mat-cell *matCellDef="let diveSite"> {{ diveSite.water_type  }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="difficulty">
+    <th mat-header-cell *matHeaderCellDef> Difficulty </th>
+    <td mat-cell *matCellDef="let diveSite"> {{ diveSite.difficulty }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let diveSite"> {{ diveSite.description }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let diveSite">
+      <button mat-icon-button routerLink="/dive-sites/edit/{{diveSite.id}}">
+        <mat-icon color="primary">edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="openConfirmDeleteDialog(diveSite)">
+        <mat-icon color="primary">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
